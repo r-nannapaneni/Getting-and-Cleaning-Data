@@ -9,6 +9,8 @@ library(reshape2)
 library(dplyr)
 library(plyr)
 
+
+## Part 1 - Downloading and Unzipping to get raw data
 # checking, if directory exists else one is created
 if(!dir.exists("./PGA_CP_Data")){dir.create("./PGA_CP_Data")}
 url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
@@ -19,7 +21,9 @@ rm(url)
 
 # Unzip the folder
 unzip(zipfile = "./PGA_CP_Data/Data.zip",exdir = "./PGA_CP_Data")
+## End of Part 1
 
+## Part 2 - Importing and collating raw data into R
 # Changing the Working directory to unzipped folder
 list.files("./PGA_CP_Data")
 setwd(paste("./PGA_CP_Data",list.files("./PGA_CP_Data")[2],sep="/"))
@@ -60,9 +64,12 @@ rm(activity_labels,colnames)
 var_names <- features$feature[match(grep("V",names(Data3),value=T),features$feature_id)]
 names(Data3) <- c("subject","activity",var_names)
 rm(features,var_names)
+## End of Part 2
 
+## Part 3 - Tidying Data
 ## Tidy Data
 TidyData <- Data3 %>% melt(id.vars=c("subject","activity"),variable.name = "feature",value.name="measure") %>%
                         ddply(.(subject,activity,feature),summarise,averageScore = mean(measure,na.rm=T)) %>%
                               arrange(subject,activity,feature)
 write.table(TidyData,"../TidyData.txt",row.names=FALSE)
+## End of part 3
