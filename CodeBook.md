@@ -1,4 +1,4 @@
 #Code Book
 
 ##Introduction
-This repository contains the files and 
+This repository contains a R script and supporting files of my work done as part of a course project - \bGetting & Cleaning Data on Coursera
