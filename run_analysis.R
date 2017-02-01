@@ -44,7 +44,7 @@ test_activities <- read.table("./test/y_test.txt",stringsAsFactors = F,col.names
 test_data <- data.frame(subjects_test, test_activities,test_feature_data)
 rm(subjects_test,test_activities,test_feature_data)
 # Merging train and test sets to create one dataset
-Data1 <- rbind(train_data,test_data)
+Data1 <- merge(train_data,test_data,all=T)
 rm(train_data,test_data)
 
 ## Loading feature data
@@ -53,7 +53,9 @@ features <- read.table("features.txt",stringsAsFactors = F,col.names=c("feature_
 colnames <- paste("V",features$feature_id,sep="")
 Data2 <- Data1[,c("subject","activity",colnames[grepl("mean|std",features$feature)])]
 features$feature_id = colnames
+## End of Part 2
 
+## Part 3 - Tidying Data
 ## converting activity number to Descriptive activity names
 # loading Actitivy number to name mapping
 activity_labels <- read.table("activity_labels.txt",stringsAsFactors = F,col.names=c("activity","activity_name"))
@@ -64,12 +66,9 @@ rm(activity_labels,colnames)
 var_names <- features$feature[match(grep("V",names(Data3),value=T),features$feature_id)]
 names(Data3) <- c("subject","activity",var_names)
 rm(features,var_names)
-## End of Part 2
 
-## Part 3 - Tidying Data
 ## Tidy Data
 TidyData <- Data3 %>% melt(id.vars=c("subject","activity"),variable.name = "feature",value.name="measure") %>%
-                        ddply(.(subject,activity,feature),summarise,averageScore = mean(measure,na.rm=T)) %>%
-                              arrange(subject,activity,feature)
+                        dcast(subject+activity ~ feature,mean,value.var="measure")
 write.table(TidyData,"../TidyData.txt",row.names=FALSE)
 ## End of part 3
