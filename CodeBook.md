@@ -39,23 +39,25 @@ The Zip file includes:
 ##Tidy data Description
 
 Subject: Contains Subject id varying from 1 to 30
+
 Activity: Contains activity name : WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING and  LAYING
+
 The rest of the columns contain average mean and standard deviation measurements for a given subject id while performing a given activity of 
 
-tBodyAcc-XYZ
-tGravityAcc-XYZ
-tBodyAccJerk-XYZ
-tBodyGyro-XYZ
-tBodyGyroJerk-XYZ
-tBodyAccMag
-tGravityAccMag
-tBodyAccJerkMag
-tBodyGyroMag
-tBodyGyroJerkMag
-fBodyAcc-XYZ
-fBodyAccJerk-XYZ
-fBodyGyro-XYZ
-fBodyAccMag
-fBodyAccJerkMag
-fBodyGyroMag
-fBodyGyroJerkMag
+-tBodyAcc-XYZ
+-tGravityAcc-XYZ
+-tBodyAccJerk-XYZ
+-tBodyGyro-XYZ
+-tBodyGyroJerk-XYZ
+-tBodyAccMag
+-tGravityAccMag
+-tBodyAccJerkMag
+-tBodyGyroMag
+-tBodyGyroJerkMag
+-fBodyAcc-XYZ
+-fBodyAccJerk-XYZ
+-fBodyGyro-XYZ
+-fBodyAccMag
+-fBodyAccJerkMag
+-fBodyGyroMag
+-fBodyGyroJerkMag
