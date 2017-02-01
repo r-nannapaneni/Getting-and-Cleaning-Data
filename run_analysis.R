@@ -64,6 +64,7 @@ rm(activity_labels,colnames)
 
 ## Adding Desccriptive Variable names
 var_names <- features$feature[match(grep("V",names(Data3),value=T),features$feature_id)]
+var_names <- tolower(gsub("-|\\()","",var_names))
 names(Data3) <- c("subject","activity",var_names)
 rm(features,var_names)
 
@@ -72,3 +73,4 @@ TidyData <- Data3 %>% melt(id.vars=c("subject","activity"),variable.name = "feat
                         dcast(subject+activity ~ feature,mean,value.var="measure")
 write.table(TidyData,"../TidyData.txt",row.names=FALSE)
 ## End of part 3
+names(TidyData)
